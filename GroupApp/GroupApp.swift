@@ -13,7 +13,7 @@ struct GroupApp: App {
 
        var body: some Scene {
            WindowGroup {
-               HomeView()
+               HomeScreen()
                    .environmentObject(GroupViewModel.shared)
            }
        }

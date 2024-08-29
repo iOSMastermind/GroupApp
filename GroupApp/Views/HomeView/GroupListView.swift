@@ -48,7 +48,7 @@ struct GroupListView: View {
         }
         .scrollIndicators(.hidden) 
         .sheet(item: $selectedGroup) { group in
-            GroupDetailView(group: group)
+            GroupInfoScreen(group: group)
                 .presentationDetents([.large]) // Allows the sheet to be draggable between sizes
                 .presentationDragIndicator(.hidden) // Show the grabber
         }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct HomeScreen: View {
     init() {
            // Customize the appearance of the Tab Bar
            let appearance = UITabBarAppearance()

@@ -7,18 +7,10 @@
 
 import SwiftUI
 import Kingfisher
-    struct GroupDetailView: View {
-//        var selectedGroup: GroupEntity
-            var groupName: String = "Friends Forever"
-            var companyName: String = "The Walt Disney Company"
-            var memberCount: Int = 20
-            var description: String = """
-            Lorem ipsum dolor sit amet consectetur.
-            Posuere massa cursus dignissim aliquam in
-            aenean et nunc aliquam. Amet euismod blandit
-            facilisis massa sit. Nulla in pulvinar.
-            """
-        let group: GroupEntity
+    struct GroupInfoScreen: View {
+        @Environment(\.presentationMode) var presentationMode
+        @State private var isSheetPresented = false
+        @StateObject var group: GroupEntity
 
             var body: some View {
                 VStack {
@@ -32,6 +24,8 @@ import Kingfisher
                             HStack {
                                 Button(action: {
                                     // Back action
+                                    presentationMode.wrappedValue.dismiss()
+
                                 }) {
                                     Image(systemName: "arrow.left")
                                         .foregroundColor(.white)
@@ -42,6 +36,8 @@ import Kingfisher
                                 
                                 Button(action: {
                                     // Edit action
+                                    isSheetPresented = true
+
                                 }) {
                                     HStack {
                                                     Text("Edit")
@@ -91,7 +87,7 @@ import Kingfisher
                                 HStack(spacing: 8) {
                                     Image(systemName: "person.2.fill")
                                         .foregroundColor(.white)
-                                    Text("\(group.unreadCount)")
+                                    Text("\(group.participantCount)")
                                         .foregroundColor(.white)
                                 }
                                 .padding(.bottom,4)
@@ -126,10 +122,13 @@ import Kingfisher
                     .shadow(radius: 5)
                     
                 }
-                
                 .background(Color(hex:"#6994F8").ignoresSafeArea().edgesIgnoringSafeArea(.all))
                 .edgesIgnoringSafeArea(.bottom)
-
+                .sheet(isPresented: $isSheetPresented) {
+//                        if let group = group {
+                            EditScreen(group: group)
+//                        }
+                    }
             }
         }
 

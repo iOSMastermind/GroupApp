@@ -149,8 +149,8 @@
 			children = (
 				7694FE0A2C80619200F450B0 /* Extensions */,
 				7694FDFD2C80343D00F450B0 /* Shapes */,
-				7694FE042C8046AF00F450B0 /* DetailView */,
 				7694FDFC2C80338900F450B0 /* HomeView */,
+				7694FE042C8046AF00F450B0 /* DetailView */,
 				7694FE0D2C80B2F000F450B0 /* EditView */,
 			);
 			path = Views;

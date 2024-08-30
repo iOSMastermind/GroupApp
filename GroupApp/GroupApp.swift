@@ -10,11 +10,12 @@ import SwiftUI
 @main
 struct GroupApp: App {
     let persistenceController = PersistenceController.shared
-
+    @StateObject private var groupViewModel = GroupViewModel()
        var body: some Scene {
            WindowGroup {
                HomeScreen()
-                   .environmentObject(GroupViewModel.shared)
+                   .environmentObject(groupViewModel)
+                   .environment(\.managedObjectContext, persistenceController.container.viewContext)
            }
        }
    }

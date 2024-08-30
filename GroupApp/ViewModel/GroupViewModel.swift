@@ -11,10 +11,12 @@ import CoreData
 class GroupViewModel: ObservableObject {
     
     @Published var groupElements: [GroupEntity] = []
-    static let shared = GroupViewModel()
+//    static let shared = GroupViewModel()
     
     private let context = PersistenceController.shared.container.viewContext
-    
+    func shouldShowEditButton(for group: GroupEntity) -> Bool {
+            return group.userStatus == "Admin"
+        }
     init() {
 //        fetchGroups()
         fetchFromCoreData()
@@ -102,5 +104,16 @@ class GroupViewModel: ObservableObject {
             }
         }
     }
-
+        func saveEditedData(group: GroupEntity, newName: String, newBio: String) {
+            group.name = newName
+            group.bio = newBio
+            
+            do {
+                try context.save()
+                fetchFromCoreData()
+            } catch {
+                print("Failed to save edited group: \(error)")
+            }
+        }
+    
 }

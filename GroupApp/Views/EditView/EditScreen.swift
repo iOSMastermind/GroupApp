@@ -6,17 +6,23 @@
 //
 
 import SwiftUI
-import SwiftUI
 import Kingfisher
 
 struct EditScreen: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var groupViewModel: GroupViewModel 
     @State private var name: String = ""
     @State private var aboutGroup: String = ""
+    var group: GroupEntity
+    
     private let nameCharacterLimit = 50
     private let aboutGroupCharacterLimit = 500
     
-    let group: GroupEntity
+    init(group: GroupEntity) {
+        self.group = group
+        _name = State(initialValue: group.name)
+        _aboutGroup = State(initialValue: group.bio)
+    }
 
     var body: some View {
         VStack {
@@ -25,7 +31,7 @@ struct EditScreen: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
-                    // Navigation Bar
+                   
                     HStack {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
@@ -38,7 +44,6 @@ struct EditScreen: View {
                         Spacer()
 
                         Button(action: {
-                            // Menu action
                         }) {
                             Image(systemName: "line.horizontal.3")
                                 .foregroundColor(.white)
@@ -47,61 +52,53 @@ struct EditScreen: View {
                     }
                     .padding(.horizontal)
 
-                    // Profile Image
                     KFImage(URL(string: "\(group.groupPhoto)"))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
-//                                .overlay(Circle().stroke(Color.white, lineWidth: 4))
                         .shadow(radius: 7)
-
                 }
             }
             .frame(height: 200)
 
             VStack {
-                // Name TextField
-                           VStack(alignment: .leading) {
-                               Text("Name")
-                                   .foregroundColor(Color(hex:"#6994F8"))
-                                   .font(.system(size: 18, weight: .semibold))
-                               
-                               VStack(alignment: .leading) {
-                                   TextField("Enter name", text: $name)
-                                       .onChange(of: name) { oldValue, newValue in
-                                           if newValue.count > nameCharacterLimit {
-                                               name = String(newValue.prefix(nameCharacterLimit))
-                                           }
-                                       }
-                                   
-                                   Divider()
-                                       .padding(.top, 8)
-                                   
-                                   HStack {
-                                       Spacer()
-                                       Text("\(name.count)/\(nameCharacterLimit)")
-                                           .font(.caption)
-                                           .foregroundColor(.gray)
-                                           .padding(.trailing, 8)
-                                           .padding(.top, 4)
-                                   }
-                               }
-                               .padding(.bottom, 16) // Padding to give some space at the bottom
+                VStack(alignment: .leading) {
+                    Text("Name")
+                        .foregroundColor(Color(hex: "#6994F8"))
+                        .font(.system(size: 18, weight: .semibold))
+                    
+                    VStack(alignment: .leading) {
+                        TextField("Enter name", text: $name)
+                            .onChange(of: name) { oldValue, newValue in
+                                if newValue.count > nameCharacterLimit {
+                                    name = String(newValue.prefix(nameCharacterLimit))
+                                }
+                            }
+                        
+                        Divider()
+                            .padding(.top, 8)
+                        
+                        HStack {
+                            Spacer()
+                            Text("\(name.count)/\(nameCharacterLimit)")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 8)
+                                .padding(.top, 4)
+                        }
+                    }
+                    .padding(.bottom, 16)
+                }
+                .padding(.horizontal)
+                .padding(.top, 20)
 
-                               
-                              
-                           }
-                           .padding(.horizontal)
-                           .padding(.top, 20)
-
-                           // About Group TextView
                 VStack(alignment: .leading) {
                     Text("About Group")
                         .foregroundColor(Color(hex: "#6994F8"))
                         .font(.system(size: 18, weight: .semibold))
                     
-                    VStack(alignment: .leading) { // Ensure alignment is leading inside this VStack as well
+                    VStack(alignment: .leading) {
                         TextField("About Group", text: $aboutGroup, axis: .vertical)
                             .padding()
                             .frame(height: 120, alignment: .topLeading)
@@ -126,39 +123,42 @@ struct EditScreen: View {
                 .padding(.horizontal)
                 .padding(.top, 20)
 
-                           Spacer()
+                Spacer()
 
-                // Cancel and Save Buttons
-                HStack {
+                HStack(spacing: 32) {
                     Button(action: {
-                        // Cancel action
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Cancel")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.red)
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
                             .frame(maxWidth: .infinity)
-                            .padding()
                             .background(Color.white)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.red, lineWidth: 2)
+                                    .stroke(Color.red, lineWidth: 1)
                             )
                     }
-
+                    
                     Button(action: {
-                        // Save action
+                        saveChanges()
                     }) {
                         Text("Save")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
+                            .padding(.vertical, 10)
+                            .padding(.horizontal, 20)
+                            .frame(maxWidth: .infinity) 
                             .background(Color(hex: "#6994F8"))
                             .cornerRadius(10)
                     }
                 }
-                .padding(.horizontal)
+                .frame(maxWidth: .infinity) 
+                .padding(.horizontal, 32)
                 .padding(.bottom, 16)
+
                 Spacer()
             }
             .padding()
@@ -170,9 +170,9 @@ struct EditScreen: View {
         .background(Color(hex: "#6994F8").ignoresSafeArea())
         .edgesIgnoringSafeArea(.bottom)
     }
+    
+    private func saveChanges() {
+        groupViewModel.saveEditedData(group: group, newName: name, newBio: aboutGroup)
+        presentationMode.wrappedValue.dismiss()
+    }
 }
-
-
-//#Preview {
-//    EditScreen()
-//}

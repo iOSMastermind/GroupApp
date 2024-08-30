@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct GroupsView: View {
+    
     var body: some View {
 //        NavigationView {
             
             ZStack {
-                // Full screen blue background
+                
                 Color(hex:"#6994F8").ignoresSafeArea()
                 
                 VStack(spacing: 0) {
-                    // Curved header and content background
+                    
                     VStack {
-                        // Header with title and icons
+                       
                         HStack {
                             Text("GROUPS")
                                 .font(.system(size: 28, weight: .bold))

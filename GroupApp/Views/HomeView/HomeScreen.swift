@@ -22,18 +22,11 @@ struct HomeScreen: View {
            UITabBar.appearance().standardAppearance = appearance
            UITabBar.appearance().scrollEdgeAppearance = appearance
        }
+    
     var body: some View {
-//            ForEach(groupViewModel.groupElements) { element in
-//                if let name = element.name {
-//                        Text(name)
-//                    } else {
-//                        EmptyView() // Ensures ForEach always returns a view
-//                    }
-//            }
-           
    
             TabView {
-                // Main Groups View
+                
                 GroupsView()
                     .tabItem {
                         Image(systemName: "house")

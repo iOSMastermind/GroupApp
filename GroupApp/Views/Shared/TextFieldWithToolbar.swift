@@ -9,16 +9,27 @@ import SwiftUI
 import UIKit
 
 struct TextFieldWithToolbar: UIViewControllerRepresentable {
+    @Binding var text: String
+    
     class Coordinator: NSObject {
         var textField: UITextField?
+        var textBinding: Binding<String>
+        
+        init(textBinding: Binding<String>) {
+            self.textBinding = textBinding
+        }
         
         @objc func doneButtonTapped() {
             textField?.resignFirstResponder()
         }
+        
+        @objc func textDidChange() {
+            textBinding.wrappedValue = textField?.text ?? ""
+        }
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(textBinding: $text)
     }
     
     func makeUIViewController(context: Context) -> UIViewController {
@@ -27,6 +38,7 @@ struct TextFieldWithToolbar: UIViewControllerRepresentable {
         // Create a UITextField and add it to the view controller's view
         let textField = UITextField(frame: CGRect(x: 20, y: 100, width: 280, height: 40))
         textField.borderStyle = .roundedRect
+        textField.placeholder = "Enter name"
         
         // Create a UIToolbar with a Done button
         let toolbar = UIToolbar()
@@ -41,6 +53,9 @@ struct TextFieldWithToolbar: UIViewControllerRepresentable {
         // Set the textField reference in the coordinator
         context.coordinator.textField = textField
         
+        // Observe changes to textField and update SwiftUI binding
+        textField.addTarget(context.coordinator, action: #selector(Coordinator.textDidChange), for: .editingChanged)
+        
         viewController.view.addSubview(textField)
         return viewController
     }
@@ -49,3 +64,4 @@ struct TextFieldWithToolbar: UIViewControllerRepresentable {
         // Update the view controller if needed
     }
 }
+

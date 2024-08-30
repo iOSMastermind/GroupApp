@@ -116,8 +116,11 @@ struct GroupInfoScreen: View {
         .background(Color(hex:"#6994F8").ignoresSafeArea().edgesIgnoringSafeArea(.all))
         .edgesIgnoringSafeArea(.bottom)
         .sheet(isPresented: $isSheetPresented) {
-            EditScreen(group: group)
-                .environmentObject(groupViewModel)
+            NavigationView {
+                
+                EditScreen(group: group)
+                    .environmentObject(groupViewModel)
+            }
         }
     }
 

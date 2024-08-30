@@ -10,14 +10,15 @@ import Kingfisher
 
 struct EditScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var groupViewModel: GroupViewModel 
+    @EnvironmentObject var groupViewModel: GroupViewModel
     @State private var name: String = ""
     @State private var aboutGroup: String = ""
     var group: GroupEntity
     
     private let nameCharacterLimit = 50
     private let aboutGroupCharacterLimit = 500
-    
+    @FocusState private var isFocused: Bool
+
     init(group: GroupEntity) {
         self.group = group
         _name = State(initialValue: group.name)
@@ -31,7 +32,6 @@ struct EditScreen: View {
                     .ignoresSafeArea()
 
                 VStack(spacing: 16) {
-                   
                     HStack {
                         Button(action: {
                             presentationMode.wrappedValue.dismiss()
@@ -70,6 +70,7 @@ struct EditScreen: View {
                     
                     VStack(alignment: .leading) {
                         TextField("Enter name", text: $name)
+                            .focused($isFocused)
                             .onChange(of: name) { oldValue, newValue in
                                 if newValue.count > nameCharacterLimit {
                                     name = String(newValue.prefix(nameCharacterLimit))
@@ -99,16 +100,28 @@ struct EditScreen: View {
                         .font(.system(size: 18, weight: .semibold))
                     
                     VStack(alignment: .leading) {
-                        TextField("About Group", text: $aboutGroup, axis: .vertical)
+                        TextField("About Group", text: $aboutGroup,axis: .vertical)
+                            .focused($isFocused)
                             .padding()
-                            .frame(height: 120, alignment: .topLeading)
+                            .frame(height: 120,alignment: .topLeading)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(10)
+                            .toolbar {
+                                ToolbarItemGroup(placement: .keyboard) {
+                                    HStack {
+                                        Spacer()
+                                        Button("Done") {
+                                            isFocused = false
+                                        }
+                                    }
+                                }
+                            }
                             .onChange(of: aboutGroup) { oldValue, newValue in
                                 if newValue.count > aboutGroupCharacterLimit {
                                     aboutGroup = String(newValue.prefix(aboutGroupCharacterLimit))
                                 }
                             }
+
                         
                         HStack {
                             Spacer()
@@ -150,12 +163,12 @@ struct EditScreen: View {
                             .foregroundColor(.white)
                             .padding(.vertical, 10)
                             .padding(.horizontal, 20)
-                            .frame(maxWidth: .infinity) 
+                            .frame(maxWidth: .infinity)
                             .background(Color(hex: "#6994F8"))
                             .cornerRadius(10)
                     }
                 }
-                .frame(maxWidth: .infinity) 
+                .frame(maxWidth: .infinity)
                 .padding(.horizontal, 32)
                 .padding(.bottom, 16)
 

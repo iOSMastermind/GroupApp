@@ -35,6 +35,7 @@ struct GroupRowView: View {
 
                 
                 Text(group.bio)
+                    .lineLimit(1)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }

@@ -72,7 +72,7 @@ class GroupViewModel: ObservableObject {
             groupEntity.participantCount = Int32(group.participantCount)
             groupEntity.groupPrivate = group.groupPrivate
             groupEntity.unreadCount = Int32(group.unreadCount)
-            groupEntity.userStatus = group.userStatus.rawValue
+            groupEntity.userStatus = group.userStatus
         }
         
         do {

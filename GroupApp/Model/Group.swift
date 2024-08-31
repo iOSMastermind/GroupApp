@@ -38,7 +38,7 @@ struct GroupElement: Codable,Identifiable {
     let participantCount: Int
     let groupPrivate: Bool
     let unreadCount: Int
-    let userStatus: UserStatus
+    let userStatus: String
 
     enum CodingKeys: String, CodingKey {
         case bio
@@ -49,10 +49,4 @@ struct GroupElement: Codable,Identifiable {
         case unreadCount = "unread_count"
         case userStatus = "user_status"
     }
-}
-
-enum UserStatus: String, Codable {
-    case admin = "Admin"
-    case invited = "Invited"
-    case manager = "Manager"
 }

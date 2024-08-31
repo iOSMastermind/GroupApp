@@ -28,7 +28,6 @@
 		7694FE092C804A8700F450B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7694FE082C804A8700F450B0 /* Kingfisher */; };
 		7694FE0C2C8061A000F450B0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FE0B2C8061A000F450B0 /* Color.swift */; };
 		7694FE0F2C80B36C00F450B0 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FE0E2C80B36C00F450B0 /* EditScreen.swift */; };
-		7698A9D82C81A971000D2EA3 /* TextFieldWithToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7698A9D72C81A971000D2EA3 /* TextFieldWithToolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -324,7 +323,6 @@
 				760F2FA72C7F6EE2008BB009 /* Constants.swift in Sources */,
 				7694FE0F2C80B36C00F450B0 /* EditScreen.swift in Sources */,
 				7694FDFB2C8032A200F450B0 /* GroupView.swift in Sources */,
-				7698A9D82C81A971000D2EA3 /* TextFieldWithToolbar.swift in Sources */,
 				760F2F9C2C7F6E93008BB009 /* Group.swift in Sources */,
 				760F2F852C7F6370008BB009 /* Persistence.swift in Sources */,
 				7694FE012C80349200F450B0 /* GroupListView.swift in Sources */,

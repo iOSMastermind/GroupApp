@@ -87,6 +87,7 @@ struct GroupInfoScreen: View {
                         .padding(.bottom, 4)
                     }
                 }
+                .padding(.top,16)
             }
             
            

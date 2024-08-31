@@ -89,12 +89,9 @@
 				760F2FA82C7F6F14008BB009 /* Info.plist */,
 				7698A9D42C81A005000D2EA3 /* App */,
 				760F2FA92C7F6F78008BB009 /* Views */,
-				760F2FA32C7F6ED4008BB009 /* Utils */,
-				760F2FA02C7F6EC1008BB009 /* Services */,
 				760F2F9D2C7F6EA0008BB009 /* ViewModel */,
 				760F2F9A2C7F6E8A008BB009 /* Model */,
-				7698A9D52C81A033000D2EA3 /* Resources */,
-				7694FDDF2C80249900F450B0 /* PersistentData */,
+				7644F93F2C82EACB004F7312 /* Common */,
 				760F2F812C7F6370008BB009 /* Preview Content */,
 			);
 			path = GroupApp;
@@ -148,6 +145,17 @@
 				7698A9D22C819F7E000D2EA3 /* GroupFeature */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7644F93F2C82EACB004F7312 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				760F2FA32C7F6ED4008BB009 /* Utils */,
+				760F2FA02C7F6EC1008BB009 /* Services */,
+				7698A9D52C81A033000D2EA3 /* Resources */,
+				7694FDDF2C80249900F450B0 /* PersistentData */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		7694FDDF2C80249900F450B0 /* PersistentData */ = {

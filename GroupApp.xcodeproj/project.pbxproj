@@ -53,7 +53,6 @@
 		7694FE052C8046C600F450B0 /* GroupInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoScreen.swift; sourceTree = "<group>"; };
 		7694FE0B2C8061A000F450B0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7694FE0E2C80B36C00F450B0 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
-		7698A9D72C81A971000D2EA3 /* TextFieldWithToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithToolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +219,6 @@
 			children = (
 				7694FE0A2C80619200F450B0 /* Extensions */,
 				7694FDFD2C80343D00F450B0 /* Shapes */,
-				7698A9D72C81A971000D2EA3 /* TextFieldWithToolbar.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

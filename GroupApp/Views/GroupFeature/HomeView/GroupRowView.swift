@@ -4,6 +4,7 @@
 //
 //  Created by Jinu on 29/08/2024.
 //
+
 import SwiftUI
 import Kingfisher
 
@@ -53,6 +54,7 @@ struct GroupRowView: View {
                
                 Text("\(group.unreadCount)")
                     .font(.footnote)
+                    .frame(minWidth: 24)
                     .padding(8)
                     .background(Circle().fill(Color(hex:"#6994F8")))
                     .foregroundColor(.white)

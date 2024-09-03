@@ -13,7 +13,7 @@ struct GroupApp: App {
     @StateObject private var groupViewModel = GroupViewModel()
        var body: some Scene {
            WindowGroup {
-               HomeScreen()
+               MainTabView()
                    .environmentObject(groupViewModel)
                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
            }

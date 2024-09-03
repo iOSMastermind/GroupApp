@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GroupsView: View {
-    
+    @EnvironmentObject var groupViewModel: GroupViewModel
+
     var body: some View {
 //        NavigationView {
             

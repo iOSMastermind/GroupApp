@@ -19,7 +19,7 @@
 		760F2FA22C7F6ECF008BB009 /* RequestServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2FA12C7F6ECF008BB009 /* RequestServices.swift */; };
 		760F2FA62C7F6EE2008BB009 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2FA42C7F6EE2008BB009 /* NetworkError.swift */; };
 		760F2FA72C7F6EE2008BB009 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2FA52C7F6EE2008BB009 /* Constants.swift */; };
-		760F2FAB2C7F6F84008BB009 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2FAA2C7F6F84008BB009 /* HomeScreen.swift */; };
+		760F2FAB2C7F6F84008BB009 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2FAA2C7F6F84008BB009 /* MainTabView.swift */; };
 		7694FDFB2C8032A200F450B0 /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FDFA2C8032A200F450B0 /* GroupView.swift */; };
 		7694FDFF2C80345800F450B0 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FDFE2C80345800F450B0 /* RoundedCornerShape.swift */; };
 		7694FE012C80349200F450B0 /* GroupListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FE002C80349200F450B0 /* GroupListView.swift */; };
@@ -28,6 +28,8 @@
 		7694FE092C804A8700F450B0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 7694FE082C804A8700F450B0 /* Kingfisher */; };
 		7694FE0C2C8061A000F450B0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FE0B2C8061A000F450B0 /* Color.swift */; };
 		7694FE0F2C80B36C00F450B0 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7694FE0E2C80B36C00F450B0 /* EditScreen.swift */; };
+		76B4D0462C86C28A0072BEDC /* GroupInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4D0452C86C28A0072BEDC /* GroupInfoViewModel.swift */; };
+		76B4D0482C86C29B0072BEDC /* EditGroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B4D0472C86C29B0072BEDC /* EditGroupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +47,7 @@
 		760F2FA42C7F6EE2008BB009 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		760F2FA52C7F6EE2008BB009 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		760F2FA82C7F6F14008BB009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		760F2FAA2C7F6F84008BB009 /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		760F2FAA2C7F6F84008BB009 /* MainTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		7694FDFA2C8032A200F450B0 /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
 		7694FDFE2C80345800F450B0 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 		7694FE002C80349200F450B0 /* GroupListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,8 @@
 		7694FE052C8046C600F450B0 /* GroupInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoScreen.swift; sourceTree = "<group>"; };
 		7694FE0B2C8061A000F450B0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		7694FE0E2C80B36C00F450B0 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
+		76B4D0452C86C28A0072BEDC /* GroupInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfoViewModel.swift; sourceTree = "<group>"; };
+		76B4D0472C86C29B0072BEDC /* EditGroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGroupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +92,9 @@
 			children = (
 				760F2FA82C7F6F14008BB009 /* Info.plist */,
 				7698A9D42C81A005000D2EA3 /* App */,
+				760F2F9A2C7F6E8A008BB009 /* Model */,
 				760F2FA92C7F6F78008BB009 /* Views */,
 				760F2F9D2C7F6EA0008BB009 /* ViewModel */,
-				760F2F9A2C7F6E8A008BB009 /* Model */,
 				7644F93F2C82EACB004F7312 /* Common */,
 				760F2F812C7F6370008BB009 /* Preview Content */,
 			);
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				760F2F9E2C7F6EB7008BB009 /* GroupViewModel.swift */,
+				76B4D0452C86C28A0072BEDC /* GroupInfoViewModel.swift */,
+				76B4D0472C86C29B0072BEDC /* EditGroupViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -141,7 +147,6 @@
 		760F2FA92C7F6F78008BB009 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7698A9D32C819FA8000D2EA3 /* Shared */,
 				7698A9D22C819F7E000D2EA3 /* GroupFeature */,
 			);
 			path = Views;
@@ -150,6 +155,7 @@
 		7644F93F2C82EACB004F7312 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7698A9D32C819FA8000D2EA3 /* Shared */,
 				760F2FA32C7F6ED4008BB009 /* Utils */,
 				760F2FA02C7F6EC1008BB009 /* Services */,
 				7698A9D52C81A033000D2EA3 /* Resources */,
@@ -172,7 +178,7 @@
 		7694FDFC2C80338900F450B0 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				760F2FAA2C7F6F84008BB009 /* HomeScreen.swift */,
+				760F2FAA2C7F6F84008BB009 /* MainTabView.swift */,
 				7694FDFA2C8032A200F450B0 /* GroupView.swift */,
 				7694FE002C80349200F450B0 /* GroupListView.swift */,
 				7694FE022C8034C100F450B0 /* GroupRowView.swift */,
@@ -336,8 +342,10 @@
 				760F2FA22C7F6ECF008BB009 /* RequestServices.swift in Sources */,
 				760F2F882C7F6370008BB009 /* GroupApp.xcdatamodeld in Sources */,
 				760F2F982C7F6C8B008BB009 /* GroupEntity+CoreDataClass.swift in Sources */,
-				760F2FAB2C7F6F84008BB009 /* HomeScreen.swift in Sources */,
+				760F2FAB2C7F6F84008BB009 /* MainTabView.swift in Sources */,
+				76B4D0482C86C29B0072BEDC /* EditGroupViewModel.swift in Sources */,
 				7694FE032C8034C100F450B0 /* GroupRowView.swift in Sources */,
+				76B4D0462C86C28A0072BEDC /* GroupInfoViewModel.swift in Sources */,
 				760F2F992C7F6C8B008BB009 /* GroupEntity+CoreDataProperties.swift in Sources */,
 				760F2FA62C7F6EE2008BB009 /* NetworkError.swift in Sources */,
 				7694FE0C2C8061A000F450B0 /* Color.swift in Sources */,

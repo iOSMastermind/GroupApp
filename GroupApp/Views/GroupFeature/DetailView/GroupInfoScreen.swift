@@ -10,54 +10,14 @@ import Kingfisher
 struct GroupInfoScreen: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isSheetPresented = false
-    @EnvironmentObject var groupViewModel: GroupViewModel
-    @StateObject var group: GroupEntity
-    private var shouldShowEditButton: Bool {
-          groupViewModel.shouldShowEditButton(for: group)
-      }
+
+    @ObservedObject var groupInfoViewModel: GroupInfoViewModel
+    @ObservedObject var group: GroupEntity
 
     var body: some View {
         VStack {
             ZStack(alignment: .top) {
                 VStack(spacing: 16) {
-                    HStack {
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Image(systemName: "arrow.left")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-
-                        Spacer()
-                        
-                        if shouldShowEditButton {
-                            Button(action: {
-                                isSheetPresented = true
-                            }) {
-                                HStack {
-                                    Text("Edit")
-                                        .font(.system(size: 16, weight: .semibold))
-                                    Image(systemName: "pencil")
-                                        .font(.system(size: 16, weight: .bold))
-                                }
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 6)
-                                .background(Color.white.opacity(0.2))
-                                .foregroundColor(.white)
-                                .cornerRadius(20)
-                            }
-                        }
-
-                        Button(action: {
-                          
-                        }) {
-                            Image(systemName: "line.horizontal.3")
-                                .foregroundColor(.white)
-                                .padding()
-                        }
-                    }
-                    .padding(.horizontal)
                     
                     KFImage(URL(string: "\(group.groupPhoto)"))
                         .resizable()
@@ -65,7 +25,6 @@ struct GroupInfoScreen: View {
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
                         .shadow(radius: 7)
-
 
                     VStack(spacing: 0) {
                         Text(group.name)
@@ -87,10 +46,9 @@ struct GroupInfoScreen: View {
                         .padding(.bottom, 4)
                     }
                 }
-                .padding(.top,16)
+                .padding(.top, 16)
             }
-            
-           
+
             VStack(alignment: .leading) {
                 Text("About Group")
                     .font(.title2)
@@ -116,13 +74,47 @@ struct GroupInfoScreen: View {
         }
         .background(Color(hex:"#6994F8").ignoresSafeArea().edgesIgnoringSafeArea(.all))
         .edgesIgnoringSafeArea(.bottom)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline) // Keeps the title in the center
+        .navigationBarItems(
+            leading: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "arrow.left")
+                    .foregroundColor(.white)
+            },
+            trailing: HStack {
+                if groupInfoViewModel.shouldShowEditButton(for: group) {
+                    Button(action: {
+                        isSheetPresented = true
+                    }) {
+                        HStack {
+                            Text("Edit")
+                                .font(.system(size: 16, weight: .semibold))
+                            Image(systemName: "pencil")
+                                .font(.system(size: 16, weight: .bold))
+                        }
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.white.opacity(0.2))
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
+                    }
+                }
+                
+                Button(action: {
+                    // Action for the menu button
+                }) {
+                    Image(systemName: "line.horizontal.3")
+                        .foregroundColor(.white)
+                        .padding()
+                }
+            }
+        )
         .sheet(isPresented: $isSheetPresented) {
             NavigationView {
-                
-                EditScreen(group: group)
-                    .environmentObject(groupViewModel)
+                EditScreen(editGroupViewModel: EditGroupViewModel(group: group, context: groupInfoViewModel.context))
             }
         }
     }
-
 }

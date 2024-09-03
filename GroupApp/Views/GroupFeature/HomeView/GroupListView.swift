@@ -32,27 +32,25 @@ struct GroupListView: View {
             .padding()
             Spacer()
         } else {
-            ScrollView {
-                VStack(spacing: 8) {
-                    ForEach(groups) { group in
-                        GroupRowView(group: group)
-                            .onTapGesture {
-                                selectedGroup = group
-                                isSheetPresented = true
+//            NavigationView {
+                ScrollView {
+                    VStack(spacing: 8) {
+                        ForEach(groups) { group in
+                            let groupInfoViewModel = GroupInfoViewModel()
+                            NavigationLink(destination: GroupInfoScreen(groupInfoViewModel: groupInfoViewModel, group: group)
+                                            .environmentObject(groupViewModel)) {
+                                GroupRowView(group: group)
                             }
-                        Divider()
+                            Divider()
+                        }
                     }
+                    .padding()
+                    .padding(.top, 80)
                 }
-                .padding()
-                .padding(.top, 80)
-            }
-            .scrollIndicators(.hidden)
-            .sheet(item: $selectedGroup) { group in
-                GroupInfoScreen(group: group)
-                    .environmentObject(groupViewModel) 
-                    .presentationDetents([.large])
-                    .presentationDragIndicator(.hidden)
-            }
+                .navigationTitle("Groups") // Optional: Set a title for the navigation bar
+                .scrollIndicators(.hidden)
+//            }
+
         }
     }
 }

@@ -7,13 +7,11 @@
 
 import Foundation
 
-// MARK: - Group
 struct Group: Codable {
     let message: String
-    let result: GroupResult // Use the new name here
+    let result: GroupResult
 }
 
-// MARK: - GroupResult
 struct GroupResult: Codable {
     let currentPage: Int
     let groups: [GroupElement]
@@ -29,7 +27,6 @@ struct GroupResult: Codable {
 }
 
 
-// MARK: - GroupElement
 struct GroupElement: Codable,Identifiable {
     let bio: String
     let groupPhoto: String

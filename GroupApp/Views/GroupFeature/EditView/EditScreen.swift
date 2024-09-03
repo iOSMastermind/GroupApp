@@ -10,20 +10,11 @@ import Kingfisher
 
 struct EditScreen: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var groupViewModel: GroupViewModel
-    @State private var name: String = ""
-    @State private var aboutGroup: String = ""
-    var group: GroupEntity
-    
+    @ObservedObject var editGroupViewModel: EditGroupViewModel
+
     private let nameCharacterLimit = 50
     private let aboutGroupCharacterLimit = 500
     @FocusState private var isFocused: Bool
-
-    init(group: GroupEntity) {
-        self.group = group
-        _name = State(initialValue: group.name)
-        _aboutGroup = State(initialValue: group.bio)
-    }
 
     var body: some View {
         VStack {
@@ -52,7 +43,7 @@ struct EditScreen: View {
                     }
                     .padding(.horizontal)
 
-                    KFImage(URL(string: "\(group.groupPhoto)"))
+                    KFImage(URL(string: "\(editGroupViewModel.group.groupPhoto)"))
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 100, height: 100)
@@ -67,22 +58,20 @@ struct EditScreen: View {
                     Text("Name")
                         .foregroundColor(Color(hex: "#6994F8"))
                         .font(.system(size: 18, weight: .semibold))
-                    
+
                     VStack(alignment: .leading) {
-                        TextField("Enter name", text: $name)
+                        TextField("Enter name", text: $editGroupViewModel.name)
                             .focused($isFocused)
-                            .onChange(of: name) { oldValue, newValue in
-                                if newValue.count > nameCharacterLimit {
-                                    name = String(newValue.prefix(nameCharacterLimit))
-                                }
+                            .onChange(of: editGroupViewModel.name) { oldValue, newValue in
+                                editGroupViewModel.validateName(newValue)
                             }
-                        
+
                         Divider()
                             .padding(.top, 8)
-                        
+
                         HStack {
                             Spacer()
-                            Text("\(name.count)/\(nameCharacterLimit)")
+                            Text("\(editGroupViewModel.name.count)/\(nameCharacterLimit)")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                                 .padding(.trailing, 8)
@@ -98,14 +87,20 @@ struct EditScreen: View {
                     Text("About Group")
                         .foregroundColor(Color(hex: "#6994F8"))
                         .font(.system(size: 18, weight: .semibold))
-                    
+
                     VStack(alignment: .leading) {
-                        TextField("About Group", text: $aboutGroup,axis: .vertical)
+                        TextField("About Group", text: $editGroupViewModel.aboutGroup, axis: .vertical)
                             .focused($isFocused)
+                            .onSubmit {
+                                isFocused = false
+                            }
                             .padding()
-                            .frame(height: 120,alignment: .topLeading)
+                            .frame(height: 120, alignment: .topLeading)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(10)
+                            .onTapGesture {
+                                isFocused = false
+                            }
                             .toolbar {
                                 ToolbarItemGroup(placement: .keyboard) {
                                     HStack {
@@ -116,16 +111,13 @@ struct EditScreen: View {
                                     }
                                 }
                             }
-                            .onChange(of: aboutGroup) { oldValue, newValue in
-                                if newValue.count > aboutGroupCharacterLimit {
-                                    aboutGroup = String(newValue.prefix(aboutGroupCharacterLimit))
-                                }
+                            .onChange(of: editGroupViewModel.aboutGroup) { oldValue, newValue in
+                                editGroupViewModel.validateAboutGroup(newValue)
                             }
 
-                        
                         HStack {
                             Spacer()
-                            Text("\(aboutGroup.count)/\(aboutGroupCharacterLimit)")
+                            Text("\(editGroupViewModel.aboutGroup.count)/\(aboutGroupCharacterLimit)")
                                 .font(.caption)
                                 .foregroundColor(.gray)
                                 .padding(.trailing, 8)
@@ -154,9 +146,10 @@ struct EditScreen: View {
                                     .stroke(Color.red, lineWidth: 1)
                             )
                     }
-                    
+
                     Button(action: {
-                        saveChanges()
+                        editGroupViewModel.saveChanges()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Save")
                             .font(.system(size: 18, weight: .semibold))
@@ -178,14 +171,11 @@ struct EditScreen: View {
             .background(Color.white)
             .clipShape(RoundedCornerShape(radius: 40, corners: [.topLeft, .topRight]))
             .shadow(radius: 5)
-            
+        }
+        .onTapGesture {
+            isFocused = false
         }
         .background(Color(hex: "#6994F8").ignoresSafeArea())
         .edgesIgnoringSafeArea(.bottom)
-    }
-    
-    private func saveChanges() {
-        groupViewModel.saveEditedData(group: group, newName: name, newBio: aboutGroup)
-        presentationMode.wrappedValue.dismiss()
     }
 }

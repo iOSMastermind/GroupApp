@@ -32,7 +32,6 @@ struct GroupListView: View {
             .padding()
             Spacer()
         } else {
-//            NavigationView {
                 ScrollView {
                     VStack(spacing: 8) {
                         ForEach(groups) { group in
@@ -47,7 +46,7 @@ struct GroupListView: View {
                     .padding()
                     .padding(.top, 80)
                 }
-                .navigationTitle("Groups") // Optional: Set a title for the navigation bar
+                .navigationTitle("Groups")
                 .scrollIndicators(.hidden)
 //            }
 

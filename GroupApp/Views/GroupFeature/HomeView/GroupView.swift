@@ -11,7 +11,6 @@ struct GroupsView: View {
     @EnvironmentObject var groupViewModel: GroupViewModel
 
     var body: some View {
-//        NavigationView {
             
             ZStack {
                 
@@ -37,7 +36,6 @@ struct GroupsView: View {
                         }
                         .padding()
                         
-                        // Rounded content view
                         VStack {
                             GroupListView()
                                 .frame(maxWidth: .infinity)
@@ -48,10 +46,8 @@ struct GroupsView: View {
                             .shadow(radius: 5)
 
                     }
-                    //.padding(.horizontal)
                 }
             }
-//        }
     }
 }
 

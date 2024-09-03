@@ -14,12 +14,4 @@ class GroupInfoViewModel: ObservableObject {
         return group.userStatus == "Admin"
     }
 
-    func deleteGroup(_ group: GroupEntity) {
-        context.delete(group)
-        do {
-            try context.save()
-        } catch {
-            print("Failed to delete group: \(error)")
-        }
-    }
 }

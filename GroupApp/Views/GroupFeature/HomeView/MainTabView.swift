@@ -26,7 +26,8 @@ struct MainTabView: View {
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
-    
+    @EnvironmentObject var groupViewModel: GroupViewModel
+
     var body: some View {
         NavigationStack {
             TabView {
